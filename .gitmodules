@@ -1,0 +1,6 @@
+[submodule ".vim-rails"]
+	path = .vim-rails
+	url = git://github.com/tpope/vim-rails.git
+[submodule ".vim-fuzzy-file-finder"]
+	path = .vim-fuzzy-file-finder
+	url = git://github.com/jamis/fuzzy_file_finder.git
