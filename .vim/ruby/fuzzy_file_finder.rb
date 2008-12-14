@@ -1,0 +1,1 @@
+../../.vim-fuzzy-file-finder/lib/fuzzy_file_finder.rb
