@@ -1,0 +1,12 @@
+[alias]
+	st = status
+	co = checkout
+	pl = pull
+	pu = push
+	lg = log
+	ci = commit
+	br = branch
+	di = diff
+	ad = add
+[color]
+	ui = true
