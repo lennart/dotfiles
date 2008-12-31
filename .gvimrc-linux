@@ -1,4 +1,4 @@
-set guifont=Monaco\ 18
+set guifont=Liberation\ Mono\ Bold\ 14
 set vb t_vb=
 
 set guitablabel=%t
