@@ -7,7 +7,9 @@ let g:fuzzy_roots = ["."]
 let g:fuzzy_ignore = '.DS_Store;.o;.bak;*/log/*;.swp;*/doc/*;doc/*;public/resources/*;'
 let g:fuzzy_matching_limit = 50
 let mapleader = ","
+let loaded_matchparen=1
 set softtabstop=2
+set browsedir=current
 set number
 set hlsearch
 set grepprg=ack
