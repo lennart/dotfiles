@@ -14,10 +14,12 @@ File.class_eval do
     end
   end
   files_exists = existing.call files
-  puts "fileS: #{files_exists}"
+  puts "Files: #{files_exists}"
   unless files_exists
     ln_s join(root_path, ".vim"), expand_path("~"), :verbose => true
-    rm expand_path(".vim-extras"), :verbose => true
+    if exist?(expand_path("~/.vim-extras"))
+      rm_rf expand_path("~.vim-extras"), :verbose => true 
+    end
     ln_s join(root_path, ".vim-extras"), expand_path("~"), :verbose => true
     suffix = "mac"
     if (/^Linux/.match(`uname` ) )
