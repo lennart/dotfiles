@@ -5,11 +5,11 @@
 	pu = push
 	lg = log
 	ci = commit
-  ca = commit -a -m
+	ca = commit -a -m
 	br = branch
 	di = diff
 	ad = add
-  github-submodule = !sh -c 'git submodule add git://github.com/$0/$1.git vendor/plugins/$1'
-  dude-submodule = !sh -c 'git submodule add git@dude:$0.git vendor/plugins/$0'
+  	github-submodule = !sh -c 'git submodule add git://github.com/$0/$1.git vendor/plugins/$1'
+  	dude-submodule = !sh -c 'git submodule add git@dude:$0.git vendor/plugins/$0'
 [color]
 	ui = true

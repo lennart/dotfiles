@@ -29,3 +29,13 @@ set showcmd
 set ruler
 set tags+=~/.ctags-rails
 cmap w!! %!sudo tee > /dev/null %
+au! Syntax arduino source ~/.vim/syntax/pde.vim
+au BufRead,BufNewfile *.pde set filetype=arduino
+autocmd BufReadPre SConstruct set filetype=python
+autocmd BufReadPre SConscript set filetype=python
+au BufRead,BufNewFile *.tpp set filetype=cpp
+augroup mkd
+  autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:>
+  autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:>
+augroup END
+
