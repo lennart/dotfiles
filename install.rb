@@ -25,7 +25,7 @@ File.class_eval do
     if (/^Linux/.match(`uname` ) )
       suffix = "linux"
     end
-    ln_s join(root_path, ".vimrc"), expand_path("~/.vimrc"), :verbose => true
+    ln_s join(root_path, ".vimrc-#{suffix}"), expand_path("~/.vimrc"), :verbose => true
     ln_s join(root_path, ".gvimrc-#{suffix}"), expand_path("~/.gvimrc"), :verbose =>true
     ln_s join(root_path, ".gitconfig"), expand_path("~/.gitconfig"), :verbose =>true
   else
