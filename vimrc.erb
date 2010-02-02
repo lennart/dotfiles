@@ -1,0 +1,66 @@
+syntax on
+source ~/.vim/autotag.vim
+set nocompatible
+filetype plugin indent on
+syntax reset
+colorscheme ir_black
+let mapleader = ","
+let loaded_matchparen=1
+set softtabstop=2
+set browsedir=current
+set number
+set hlsearch
+set grepprg=ack
+set grepformat=%f:%l:%m
+set shiftwidth=2
+set foldmethod=syntax
+set tabstop=2
+set expandtab
+map <Leader>n :NERDTreeToggle<CR>
+map <Leader>d :bd<CR>
+map <Leader>x :bn<CR>
+map <Leader>z :bp<CR>
+map <Leader>p :DiffChangesDiffToggle<CR>
+nnoremap <Leader>g :e#<CR>
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
+
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplUseSingleClick = 1
+
+set ai
+set vb t_vb=
+set si
+set cursorline
+set showcmd
+set ruler
+set tags+=~/.ctags-rails
+set tags+=~/.vim/rubygems-tags
+cmap w!! %!sudo tee > /dev/null %
+set fileformats=unix,mac,dos
+au! Syntax arduino source ~/.vim/syntax/pde.vim
+au BufRead,BufNewfile *.pde set filetype=arduino
+autocmd BufReadPre SConstruct set filetype=python
+autocmd BufReadPre SConscript set filetype=python
+autocmd BufReadPre Rakefile set filetype=ruby
+autocmd BufReadPre config.ru set filetype=ruby
+autocmd BufReadPre Gemfile set filetype=ruby
+au BufNewFile,BufRead *.mxml set filetype=mxml
+au BufNewFile,BufRead *.as set filetype=actionScript
+
+
+au BufRead,BufNewFile *.tpp set filetype=cpp
+augroup mkd
+  autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:>
+  autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:>
+augroup END
+let g:NERDTreeBookmarksFile = expand("$HOME") ."/.bookmarks"
+
