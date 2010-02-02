@@ -1,6 +1,4 @@
 *.swp
 *.swo
-.vimfuzzyfinder
-.vim/.netrwhist
 tags
-.gvimrc
+gitconfig
