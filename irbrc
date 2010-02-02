@@ -35,9 +35,11 @@ class Object
   end
 end
 
+
 def copy(str)
   IO.popen('pbcopy', 'w') { |f| f << str.to_s }
 end
+
 
 def copy_history
   history = Readline::HISTORY.entries
