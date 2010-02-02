@@ -3,13 +3,25 @@
 	email = <%= print("Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
 [alias]
 	co = checkout
+	st = status
+	pl = pull
+	pu = push
+	lg = log
+	ci = commit
+	ca = commit -a -m
+	br = branch
+	di = diff
+	ad = add
+ 	github-submodule = !sh -c 'git submodule add git://github.com/$0/$1.git vendor/plugins/$1'
+ 	dude-submodule = !sh -c 'git submodule add git@dude:$0.git vendor/plugins/$0'
 [color]
+	ui = true
 	diff = auto
 	status = auto
 	branch = auto
 [core]
 	excludesfile = <%= ENV['HOME'] %>/.gitignore
-	editor = mate -w
+	editor = mvim -f
 [apply]
 	whitespace = nowarn
 [format]
