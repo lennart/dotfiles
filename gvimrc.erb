@@ -1,12 +1,13 @@
 set vb t_vb=
-<% if platform == "Linux" %>
+  <% case platform
+when "Linux" then %>
 set guifont=Liberation\ Mono\ Bold\ 14
 
 set guitablabel=%t
 set columns=100
 set lines=35
-<% else if platform == "Darwin" %>
-set guifont=Monaco:h16
+<% when "Darwin" then %>
+set guifont=Menlo:h16
 
 let fustate=0
 set fuoptions=maxhorz,maxvert
