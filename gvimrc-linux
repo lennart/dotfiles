@@ -1,6 +1,0 @@
-set guifont=Liberation\ Mono\ Bold\ 14
-set vb t_vb=
-
-set guitablabel=%t
-set columns=100
-set lines=35

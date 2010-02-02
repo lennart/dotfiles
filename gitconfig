@@ -1,6 +1,9 @@
+[user]
+	name = lennart
+	email = l.melzer@tu-bs.de
 [alias]
-	st = status
 	co = checkout
+	st = status
 	pl = pull
 	pu = push
 	lg = log
@@ -9,7 +12,17 @@
 	br = branch
 	di = diff
 	ad = add
-  	github-submodule = !sh -c 'git submodule add git://github.com/$0/$1.git vendor/plugins/$1'
-  	dude-submodule = !sh -c 'git submodule add git@dude:$0.git vendor/plugins/$0'
+ 	github-submodule = !sh -c 'git submodule add git://github.com/$0/$1.git vendor/plugins/$1'
+ 	dude-submodule = !sh -c 'git submodule add git@dude:$0.git vendor/plugins/$0'
 [color]
 	ui = true
+	diff = auto
+	status = auto
+	branch = auto
+[core]
+	excludesfile = /Users/lenni/.gitignore
+	editor = mvim -f
+[apply]
+	whitespace = nowarn
+[format]
+	pretty = %C(yellow)%h%Creset %s
