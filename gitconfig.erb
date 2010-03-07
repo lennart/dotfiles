@@ -1,6 +1,9 @@
 [user]
-	name = <%= print("Your Name: "); STDOUT.flush; STDIN.gets.chomp %>
+	name = <%= print("Your Name: "); STDOUT.flush; username = STDIN.gets.chomp %>
 	email = <%= print("Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
+[github]
+  user = <%= username %>
+  token = <%= print "Github API Token:"; STDOUT.flush; STDIN.gets.chomp %> 
 [alias]
 	co = checkout
 	st = status
