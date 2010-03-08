@@ -13,3 +13,4 @@ function railsapp {
 
 # misc
 alias reload='. ~/.bash_profile'
+alias io='thor couch_i_o'
