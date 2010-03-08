@@ -6,7 +6,7 @@ desc "install the dot files into user's home directory"
 task :install do
   replace_all = false
   Dir['*'].each do |file|
-    next if %w[Rakefile README.rdoc LICENSE vim-extras nerdtree].include? file
+    next if %w[Rakefile README.rdoc LICENSE vim-extras nerdtree thor].include? file
     
     if File.exist?(File.join(ENV['HOME'], ".#{file.sub('.erb', '')}"))
       if File.identical? file, File.join(ENV['HOME'], ".#{file.sub('.erb', '')}")
@@ -29,6 +29,15 @@ task :install do
       end
     else
       link_file(file)
+    end
+  end
+end
+
+desc "Installs all Thorfiles in 'thor/'"
+task :thor do
+  if system "thor help > /dev/null"
+    Dir["thor/*.thor"].each do |f|
+      system "thor install #{f}"
     end
   end
 end
@@ -117,4 +126,4 @@ namespace :nerdtree do
   task :default => ['update']
 end
 
-task :default => [:install, :"nerdtree:default"]
+task :default => [:install, :"nerdtree:default", :thor]
