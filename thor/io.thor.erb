@@ -1,0 +1,53 @@
+#!/usr/local/bin/ruby
+require 'tempfile'
+require 'rest_client'
+require 'thor'
+require 'json'
+class CouchIO < Thor
+  map "-s" => :shorten
+  map "-l" => :shorts
+
+  desc "shorten TARGET", "Shortens the passed URL"
+  def shorten target = `pbpaste`
+    puts "Longish URL: #{target}"
+    short = RestClient.post("#{io_url}/shorten?target=#{target}",{}).body
+    puts "Short URL: #{short.strip}"
+  end
+
+  desc :shorts, "Lists all shortened URLs"
+  def shorts
+    response = RestClient.get("#{io_url}/shorts-by-date.json?limit=20&descending=true").body
+    docs = JSON.parse(response)["rows"]
+    docs.each do |d|
+      date = DateTime.parse d["key"]
+      puts "[#{date.day}.#{date.mon}. #{date.hour}:#{date.min}] #{d["id"]} -> #{d["value"]}\n" 
+    end
+  end
+
+  private 
+  def io_url
+    "https://#{username}:#{password}@#{host}"
+  end
+  
+  def credentials_file
+    File.expand_path(File.join(ENV["HOME"],".io_credentials"))
+  end
+
+  def credentials
+    raise "No Credentials present" unless File.exists?(credentials_file)
+    @credentials ||= JSON.parse(File.read(credentials_file))
+    @credentials
+  end
+
+  def host
+    "<%= puts "Your URL-Shortener-Domain: "; STDIN.gets.chomp%>"
+  end
+
+  def username
+    credentials["username"]
+  end
+
+  def password
+    credentials["password"]
+  end
+end
