@@ -12,4 +12,4 @@ Installation
 Features
 --------
 
-see [Ryan's](http://github.com/ryanb/dotfiles/README.md) 
+see [Ryan's](http://github.com/ryanb/dotfiles) 
