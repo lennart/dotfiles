@@ -13,3 +13,6 @@
 [submodule "nerdtree"]
 	path = nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
+[submodule "rag-tag"]
+	path = rag-tag
+	url = git://github.com/tpope/vim-ragtag.git

@@ -33,14 +33,50 @@ task :install do
   end
 end
 
-desc "Installs all Thorfiles in 'thor/'"
-task :thor do
-  if system "thor help > /dev/null"
-    Dir["thor/*.thor"].each do |f|
-      system "thor install #{f}"
+namespace :thor do
+  desc "Prepares environment for Thor"
+  task :setup do
+    if system "thor help > /dev/null"
+      require 'thor'
+      class ThorFiles < Thor
+        desc :render, "Renders ERB to output file"
+        def render input, output
+          puts "generating #{output}"
+          File.open(output, 'w') do |new_file|
+            new_file.write ERB.new(File.read(input)).result(binding)
+          end
+          output
+        end
+
+        desc :install, "Installs given Thorfile"
+        def install file
+          output = if file =~ /.erb$/
+                     target = file.sub('.erb','') 
+                     render file, target
+                   else
+                     file
+                   end
+          system "thor install #{output}"
+        end
+      end
+      thor_files = ThorFiles.new
+      Dir["thor/*"].each do |f|
+        if f =~ /.erb$/ 
+          auto_generated = f.sub('.erb','')
+          File.unlink auto_generated if File.exists?(auto_generated)
+          thor_files.install f
+        else
+          thor_files.install f unless File.exists? "#{f}.erb"
+        end
+      end
+    else
+      puts "No Thor present, use `gem install thor` if you want Thor functionality"
     end
+
   end
 end
+
+
 
 def replace_file(file)
   FileUtils.rm_rf File.join(ENV["HOME"],".#{file.sub('.erb','')}"), :verbose => true

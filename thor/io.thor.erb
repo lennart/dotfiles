@@ -6,17 +6,19 @@ require 'json'
 class CouchIO < Thor
   map "-s" => :shorten
   map "-l" => :shorts
+  map "-o" => :open
+  
 
   desc "shorten TARGET", "Shortens the passed URL"
   def shorten target = `pbpaste`
     puts "Longish URL: #{target}"
-    short = RestClient.post("#{io_url}/shorten?target=#{target}",{}).body
+    short = RestClient.post("#{private_url}/shorten?target=#{target}",{}).body
     puts "Short URL: #{short.strip}"
   end
 
   desc :shorts, "Lists all shortened URLs"
   def shorts
-    response = RestClient.get("#{io_url}/shorts-by-date.json?limit=20&descending=true").body
+    response = RestClient.get("#{private_url}/shorts-by-date.json?limit=20&descending=true").body
     docs = JSON.parse(response)["rows"]
     docs.each do |d|
       date = DateTime.parse d["key"]
@@ -24,9 +26,18 @@ class CouchIO < Thor
     end
   end
 
+  desc "open ID", "Opens URL by ID in browser"
+  def open id
+    `open #{public_url}/#{id}`
+  end
+
   private 
-  def io_url
+  def private_url
     "https://#{username}:#{password}@#{host}"
+  end
+
+  def public_url
+    "http://#{host}"
   end
   
   def credentials_file
@@ -51,3 +62,5 @@ class CouchIO < Thor
     credentials["password"]
   end
 end
+
+# vim:filetype=ruby
