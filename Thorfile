@@ -5,6 +5,10 @@ module Dotfiles
     add_runtime_options!
     class_options %w(skiperb -e) => false
 
+    def setup
+      @installer = Installer.new options
+    end
+
     def files
       excludes = %w{. .. README.md Rakefile Thorfile LICENSE}
       include_dirs = %w{bash vim}
@@ -15,7 +19,8 @@ module Dotfiles
           (File.directory?(f) and not include_dirs.include?(f)) or excludes.include?(f)
         end
       end
-      thor :"dotfiles:installer:file", files_to_install, options
+      say "Installing: #{files_to_install.join(", ")}" unless options[:quiet]
+      @installer.file *files_to_install
     end
 
     def thorfiles
@@ -23,9 +28,9 @@ module Dotfiles
       erbfiles = Dir["thor/*.erb"]
       tfiles.reject! {|f| erbfiles.include?("#{f}.erb") }
       unless options[:skiperb]
-        thor :"dotfiles:installer:thorfile", erbfiles
+        @installer.thorfile *erbfiles
       end
-      thor :"dotfiles:installer:thorfile", tfiles, options
+      @installer.thorfile *tfiles
     end
   end
 
@@ -33,12 +38,16 @@ module Dotfiles
     desc "Sets up io_credentials and io.thor"
     include Thor::Actions
 
+    def setup
+      @installer = Installer.new options
+    end
+
     def credentials
-      thor :"dotfiles:installer:file", "io_credentials"
+      @installer.file("io_credentials")
     end
 
     def io
-      thor :"dotfiles:installer:thorfile", "io"
+      @installer.thorfile "io"
     end
       
   end
@@ -54,12 +63,12 @@ module Dotfiles
 
     desc "auto", "Runs AutoInstaller"
     def auto
-      thor :"dotfiles:auto_installer"
+      AutoInstaller.new.invoke
     end
 
     desc "auto_skip_erb", "Runs AutoInstaller with skip_erb option"
     def auto_skip_erb
-      thor :"dotfiles:auto_installer", :skiperb => true
+      AutoInstaller.new([],:skiperb => true).invoke
     end
 
     desc "thorfile THORFILE", "Installs given .thor file[s] system-wide"
