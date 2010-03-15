@@ -1,12 +1,13 @@
 #!/usr/local/bin/ruby
-require 'tempfile'
 require 'rest_client'
+require 'uri'
 require 'thor'
 require 'json'
 class CouchIO < Thor
   map "-s" => :shorten
   map "-l" => :shorts
   map "-o" => :open
+  map "-d" => :delete
   
 
   desc "shorten TARGET", "Shortens the passed URL"
@@ -29,6 +30,13 @@ class CouchIO < Thor
   desc "open ID", "Opens URL by ID in browser"
   def open id
     `open #{public_url}/#{id}`
+  end
+
+  desc "delete ID", "Permanently removes ID"
+  def delete id
+    response = RestClient.get("#{private_url}/shorts.json?include_docs=true&key=#{URI.escape "\"#{id}\""}").body
+    doc = JSON.parse(response)["rows"].first["doc"]
+    RestClient.delete "#{private_url}/#{id}?rev=#{doc["_rev"]}"
   end
 
   private 
