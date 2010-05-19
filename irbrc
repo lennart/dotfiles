@@ -53,4 +53,9 @@ def paste
   `pbpaste`
 end
 
+def did *args
+  require 'thor'
+  load File.expand_path('~/dotfiles/thor/did.thor')
+  @did ||= Did.new
+end
 load File.dirname(__FILE__) + '/.railsrc' if $0 == 'irb' && ENV['RAILS_ENV']

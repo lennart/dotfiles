@@ -16,4 +16,5 @@ augroup markdown
 
 
 augroup END
-
+runtime! ftdetect/*.vim
+au BufNewFile,BufRead *.mustache        setf mustache
