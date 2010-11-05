@@ -59,5 +59,5 @@ def did *args
 end
 load File.dirname(__FILE__) + '/.railsrc' if $0 == 'irb' && ENV['RAILS_ENV']
 IRB.conf[:IRB_NAME] = `hostname`.strip
-IRB.conf[:PROMPT][:HOSTED] = {:PROMPT_I => "%N>"}
+IRB.conf[:PROMPT][:HOSTED] = {:PROMPT_I => "%N> ", :RETURN=>"=> %s\n", :PROMPT_N=>"%N> ", :PROMPT_S=>nil, :PROMPT_C=>"?> " }
 IRB.conf[:PROMPT_MODE] = :HOSTED
