@@ -5,7 +5,6 @@ require 'irb/ext/save-history'
 IRB.conf[:SAVE_HISTORY] = 1000
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
 
-IRB.conf[:PROMPT_MODE] = :SIMPLE
 
 %w[rubygems looksee/shortcuts wirble].each do |gem|
   begin
@@ -59,3 +58,6 @@ def did *args
   @did ||= Did.new
 end
 load File.dirname(__FILE__) + '/.railsrc' if $0 == 'irb' && ENV['RAILS_ENV']
+IRB.conf[:IRB_NAME] = `hostname`.strip
+IRB.conf[:PROMPT][:HOSTED] = {:PROMPT_I => "%N>"}
+IRB.conf[:PROMPT_MODE] = :HOSTED
