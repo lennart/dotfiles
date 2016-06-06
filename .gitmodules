@@ -10,9 +10,3 @@
 [submodule ".vim-extras/nerdtree"]
 	path = .vim-extras/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
-[submodule "nerdtree"]
-	path = nerdtree
-	url = git://github.com/scrooloose/nerdtree.git
-[submodule "rag-tag"]
-	path = rag-tag
-	url = git://github.com/tpope/vim-ragtag.git
