@@ -1,0 +1,44 @@
+[user]
+  name = Lennart Melzer
+  email = lennart@melzer.it
+[github]
+  user = lennart
+[alias]
+  co = checkout
+  st = status -sb
+  pl = pull
+  pu = push
+  push = !sh -c 'git push --tags && git push'
+  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lg = log --oneline --decorate
+  ci = commit --verbose
+  ai = add --interactive
+  a = commit --amend
+  br = branch
+  di = diff --word-diff --function-context
+  dc = diff --word-diff --cached --function-context
+  ad = add
+  ap = add --patch
+  fix = stash --keep-index --include-untracked
+  c = commit -m
+  wc = whatchanged  --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[color]
+  ui = true
+  diff = auto
+  status = auto
+  branch = auto
+[core]
+  excludesfile = ~/.gitignore
+  editor = `which emacsclient` -t -a emacs -s
+  autocrlf = input
+[apply]
+  whitespace = nowarn
+[format]
+  pretty = %C(yellow)%h%Creset %s
+[push]
+  default = current
+[filter "media"]
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
+[merge]
+  tool = meld

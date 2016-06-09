@@ -1,9 +1,3 @@
 *.swp
 *.swo
 tags
-gitconfig
-irbrc
-vim/nerdtree_plugin
-vim/doc/NERD_tree.txt
-vim/plugin/NERD_tree.vim
-vim/.netrwhist
