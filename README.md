@@ -16,7 +16,7 @@ then symlink all the files as you like.
 Branches
 --------
 
-currently you are looking at the `emacs` branch. also available is the `rails-vim` branch from the time I did that.
+currently you are looking at the `emacs` branch. also available is the `rails-vim` branch for the time I do that.
 branches might change.
 
 Contents
